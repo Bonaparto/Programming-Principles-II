@@ -1,0 +1,5 @@
+N, K, M = int(input()), int(input()), int(input())
+a = ((N // K) * (K // M))
+b = (((N // K) * (K % M) + N % K) // K) * (K // M)
+c = (((((N // K) * (K % M) + N % K) // K) * (K % M) + (((N // K) * (K % M) + N % K) % K)) // K) * (K // M)
+print(a + b + c)
