@@ -16,3 +16,5 @@ print(len(N1))
 print(*N1)
 print(len(M1))
 print(*M1)
+# A & B - INTERSECTION
+# A - B - nums in A, which are not in B

@@ -1,15 +1,17 @@
 from sys import stdin
-from operator import itemgetter
 
-def comp(a, b):
-    return(-a, b)
+def comp(a):
+    return(-a[0], a[1])
 
-a = stdin.read().split()
+a = stdin.read().split()    #splitlines() creates a list of lines, not single words
 l, b, c = {}, [], []
+
 for i in a:
-    l.update({i:a.count(i)})
-    b.append(i)
-b = set(b)
-for i in b:
-    c.append((int(l[i]), str(i)))
-c.sort(comp)
+    if i not in b:
+        c.append(f)
+        f = (a.count(i), i)
+        b.append(i)
+
+for i in sorted(c, key=comp):
+    print(i[1])
+
