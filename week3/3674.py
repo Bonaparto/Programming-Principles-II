@@ -14,4 +14,3 @@ for i in a:
 
 for i in sorted(c, key=comp):
     print(i[1])
-
