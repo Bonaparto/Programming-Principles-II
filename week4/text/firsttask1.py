@@ -1,6 +1,6 @@
 import re
 
-with open('Py3\Programming-Principles-II\week4\\text.txt', 'r', encoding = 'utf-8') as f:
+with open('Python\Programming-Principles-II\week4\\text.txt', 'r', encoding = 'utf-8') as f:
     txt = f.read()
 
 
