@@ -1,6 +1,4 @@
 import os
-import shutil
-import re
 
 cur_url = os.getcwd()
 start_url = os.getcwd()
@@ -51,8 +49,10 @@ while True:
             print('The text was successfully written to the file.')
 
         elif option == 'Back':
-            if cur_url != start_url:
-                cur_url = os.getcwd()
+            cur_url1 = cur_url[::-1]
+            if cur_url1[cur_url1.find('\\')+1] != ':':
+                cur_url1 = cur_url1[cur_url1.find('\\')+1:]
+                cur_url = cur_url1[::-1]
                 print('Successfully returned to the previous directory.')
             else:
                 print('Error: Impossible to move back.')
@@ -92,6 +92,7 @@ while True:
                 else:
                     break
             os.rename(cur_url, name)
+            cur_url = cur_url[:len(cur_url) - cur_url[::-1].find('\\')]
             cur_url = os.path.join(cur_url[:cur_url.find(last_opened)], name)
             print('Operation done successfully.')
         
@@ -149,7 +150,8 @@ while True:
                     break
             if name == ',.':
                 continue
-            with open(f'{cur_url + name}', 'w', encoding='utf-8') as f:
+            os.chdir(cur_url)
+            with open(name, 'w', encoding='utf-8') as f:
                 f.write('')
             print('Operation done successfully.')
 
@@ -177,7 +179,6 @@ while True:
             os.chdir(cur_url)
             files = [i for i in os.listdir() if os.path.isfile(i)]
             dirs = [i for i in os.listdir() if os.path.isdir(i)]
-            print(cur_url, files, dirs)
             a = 1
             if len(files) == 0 and len(dirs) == 0:
                 print('There is nothing to open.')
@@ -211,8 +212,10 @@ while True:
                 last_opened = name
 
         elif option == 'Back':
-            if cur_url != start_url:
-                
+            cur_url1 = cur_url[::-1]
+            if cur_url1[cur_url1.find('\\')+1] != ':':
+                cur_url1 = cur_url1[cur_url1.find('\\')+1:]
+                cur_url = cur_url1[::-1]
                 print('Successfully returned to the previous directory.')
             else:
                 print('Error: Impossible to move back.')
