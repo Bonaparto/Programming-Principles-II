@@ -1,6 +1,7 @@
 import re
+import csv
 
-with open('Python\Programming-Principles-II\week4\\text.txt', 'r', encoding = 'utf-8') as f:
+with open('Py3\Programming-Principles-II\week4\\text\\text.txt', 'r', encoding = 'utf-8') as f:
     txt = f.read()
 
 
@@ -20,7 +21,10 @@ print('Name of the company:', *compnamepat)
 print('BIN of the company:', *compBINpat)
 print('List of bought items:')
 
+items = [['Компания', 'БИН', "Название", "Количество", "Цена за единицу", "Сумма", "Дата", "Адрес"]]
+
 for i in range(len(cntpat)):
+    items.append((compnamepat[0], compBINpat[0], productsnamespat[i], amountofproduct[i], priceofproduct[i], totalpriceofproducts[i], datepat[0], adresspat[0]))
     print('Title:', productsnamespat[i])
     print('Count:', amountofproduct[i])
     print('Unit price:', priceofproduct[i])
@@ -28,3 +32,8 @@ for i in range(len(cntpat)):
 
 print('Time:', *datepat)
 print('Adress:', *adresspat)
+
+
+with open('file.csv', 'w', newline='', encoding='utf-8') as f:
+    writer = csv.writer(f)
+    writer.writerows(items)
