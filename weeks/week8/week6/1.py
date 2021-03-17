@@ -17,6 +17,7 @@ class Student(Person):
 
     def printer1(self):
         print(self.school, self.grade)
+
 # p1 = Person('Kek', 931)
 # p2 = Person('Lol', 123)
 # p1.printer()
