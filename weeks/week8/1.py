@@ -14,9 +14,8 @@ speed = 15
 
 isJump = False
 jumpCount = 10
-
-
 run = True
+
 while run:
     pygame.time.delay(40)
 
@@ -49,20 +48,6 @@ while run:
         else:
             isJump = False
             jumpCount = 10
-
-    # if -height >= y or y >= 600:
-    #     if y >= 600:
-    #         y = -height
-    #     else:
-    #         y = 600
-
-    # if -width >= x or x >= 900:
-    #     if x >= 900:
-    #         x = -width
-    #     else:
-    #         x = 900
-
-    # print(x, y)
 
     pygame.display.update()
 
