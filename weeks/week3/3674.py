@@ -8,8 +8,8 @@ l, b, c = {}, [], []
 
 for i in a:
     if i not in b:
-        c.append(f)
         f = (a.count(i), i)
+        c.append(f)
         b.append(i)
 
 for i in sorted(c, key=comp):
