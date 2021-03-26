@@ -15,7 +15,7 @@ amount = int(input())
 print('Enter the length of passwords.')
 plength = int(input())
 
-print('Choose what the password\s should contain.')
+print('Choose what the password(s) should contain.')
 print('Enter "1" to add and "2" otherwise.\n')
 
 print('Should password contain digits?')
