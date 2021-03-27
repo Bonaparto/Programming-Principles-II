@@ -10,14 +10,14 @@ x = 415
 y = 250
 width = 70
 height = 100
-speed = 15
+speed = 0.35
 
 isJump = False
 jumpCount = 10
 run = True
 
 while run:
-    pygame.time.delay(40)
+    pygame.time.delay(1)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
