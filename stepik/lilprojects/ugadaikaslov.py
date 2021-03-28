@@ -103,23 +103,35 @@ def play(word):
                 print('Вы уже угадали эту букву.')
                 continue
             break
-        tries -= 1 
-        if x in word:
-            print('Вы угадали букву.')
-            guessed_letters.append(x)
-            n = word.find(x)
-            # for i in range(len(word_completion)):            Need to replace the '_' with a letter.
-                    
-            if word_completion == word:
-                print('Вы победили!!11!1')
-                print(f'Загаданное слово было: {word}')
+
+        while True:
+            if x in word:
+                print('Вы угадали букву.')
+                guessed_letters.append(x)
+                temp = ''
+                for i in range(len(word_completion)):        
+                    if word[i] == x:
+                        temp += x
+                    elif word_completion[i] != '_':
+                        temp += word_completion[i]
+                    else:
+                        temp += '_'
+                word_completion = temp
+                print(word_completion)
+                if word_completion == word:
+                    print('Вы победили!!11!1')
+                    print(f'Загаданное слово было: {word}')
+                    f = False
+                    break
+                x = input()
+            else:
+                tries -= 1 
+                if tries == 0:
+                    print('First time?')
+                    print(f'Загаданное слово было: {word}')
+                    print(display_hangman(tries))
+                    f = False
+                print('Zannen.')
                 break
-        else:
-            if tries == 0:
-                print('Лузер.')
-                print(f'Загаданное слово было: {word}')
-                print(display_hangman(tries))
-                break
-            print('Какая жалость.')
   
 play(get_word())
