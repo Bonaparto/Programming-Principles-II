@@ -13,7 +13,9 @@ screen = pygame.display.set_mode(size_of_screen)
 pygame.display.set_caption('ЖЫНДЫ МА')
 screen.fill(Green)
 run = True
-# clock = pygame.
+
+clock = pygame.time.Clock
+
 FPS = 60
 
 while run:
@@ -27,7 +29,6 @@ while run:
     # pygame.draw.line(screen, Red, (200, 400), (3000, 7), 150)
     pygame.draw.circle(screen, Black, (900, 500), 60)
 
-    
     # clock.tick(FPS)
 
     # Applying changes on the window
