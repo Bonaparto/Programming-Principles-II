@@ -17,7 +17,7 @@ pygame.display.set_caption('Sin & Cos <3')
 screen.fill(Black)
 font = pygame.font.SysFont('arial', 30)
 font1 = pygame.font.SysFont('arial', 36)
-run = True
+run, Draw = True, True
 
 while run:
 
@@ -120,13 +120,14 @@ while run:
 
     # drawing graph
     X = 0
-    for i in range(-540, 541):
-        pygame.draw.line(screen, Red, (160 + X, 490 - int(sin((i / 180) * pi) * 302)), (161 + X, 490 - int(sin(((i + 1) / 180) * pi) * 302)), 4)
-        X += (1500 / 1080)
-
-    X = 0
-    for i in range(-2160, 2161, 4):
-        pygame.draw.line(screen, Blue, (160 + X, 490 - int(cos((i / 720) * pi) * 302)), (161 + X, 490 - int(cos(((i + 1) / 720) * pi) * 302)), 4)
-        X += (1500 / 1080)
+    while Draw:
+        for i in range(-540, 541):
+            pygame.draw.line(screen, Red, (160 + X, 490 - int(sin((i / 180) * pi) * 302)), (161 + X, 490 - int(sin(((i + 1) / 180) * pi) * 302)), 4)
+            if i % 5 == 0:
+                pygame.draw.line(screen, Blue, (160 + X, 490 - int(cos((i / 180) * pi) * 302)), (161 + X, 490 - int(cos(((i + 1) / 180) * pi) * 302)), 4)
+            X += (1500 / 1080)
+            pygame.display.update()
+            pygame.time.delay(3)
+        Draw = False
 
     pygame.display.flip()
