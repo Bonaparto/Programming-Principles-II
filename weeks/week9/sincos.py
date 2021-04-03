@@ -131,3 +131,5 @@ while run:
         Draw = False
 
     pygame.display.flip()
+
+pygame.quit()
