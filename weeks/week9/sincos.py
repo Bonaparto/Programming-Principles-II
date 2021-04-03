@@ -123,7 +123,7 @@ while run:
     while Draw:
         for i in range(-540, 541):
             pygame.draw.line(screen, Red, (160 + X, 490 - int(sin((i / 180) * pi) * 302)), (161 + X, 490 - int(sin(((i + 1) / 180) * pi) * 302)), 4)
-            if i % 5 == 0:
+            if i % 3 == 0:
                 pygame.draw.line(screen, Blue, (160 + X, 490 - int(cos((i / 180) * pi) * 302)), (161 + X, 490 - int(cos(((i + 1) / 180) * pi) * 302)), 4)
             X += (1500 / 1080)
             pygame.display.update()
