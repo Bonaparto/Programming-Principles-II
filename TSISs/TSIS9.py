@@ -42,35 +42,35 @@ while run:
         pygame.draw.line(screen, White, (100, y), (1720, y), 2)
         if 250 < y < 850:
             # small marks
-            pygame.draw.line(screen, White, (100, y - 19), (110, y - 19))
-            pygame.draw.line(screen, White, (100, y - 57), (110, y - 57)) 
-            pygame.draw.line(screen, White, (1720, y - 19), (1710, y - 19)) 
-            pygame.draw.line(screen, White, (1720, y - 57), (1710, y - 57)) 
+            pygame.draw.line(screen, White, (100, y - 19), (110, y - 19), 2)
+            pygame.draw.line(screen, White, (100, y - 57), (110, y - 57), 2) 
+            pygame.draw.line(screen, White, (1720, y - 19), (1710, y - 19), 2) 
+            pygame.draw.line(screen, White, (1720, y - 57), (1710, y - 57), 2) 
 
             # big marks
-            pygame.draw.line(screen, White, (100, y - 38), (120, y - 38)) 
-            pygame.draw.line(screen, White, (1720, y - 38), (1700, y - 38)) 
+            pygame.draw.line(screen, White, (100, y - 38), (120, y - 38), 4) 
+            pygame.draw.line(screen, White, (1720, y - 38), (1700, y - 38), 4) 
 
     for x in range(160, 1720, 250):
         pygame.draw.line(screen, White, (x, 100), (x, 880), 2)
         if 250 < x < 1700:
             # marks for lower line
-            pygame.draw.line(screen, White, (x - 220, 880), (x - 220, 870))
-            pygame.draw.line(screen, White, (x - 160, 880), (x - 160, 870))
-            pygame.draw.line(screen, White, (x - 190, 880), (x - 190, 860)) 
-            pygame.draw.line(screen, White, (x - 100, 880), (x - 100, 870))
-            pygame.draw.line(screen, White, (x - 40, 880), (x - 40, 870))
-            pygame.draw.line(screen, White, (x - 70, 880), (x - 70, 860)) 
-            pygame.draw.line(screen, White, (x - 130, 880), (x - 130, 850))
+            pygame.draw.line(screen, White, (x - 220, 880), (x - 220, 870), 2)
+            pygame.draw.line(screen, White, (x - 160, 880), (x - 160, 870), 2)
+            pygame.draw.line(screen, White, (x - 190, 880), (x - 190, 860), 3) 
+            pygame.draw.line(screen, White, (x - 100, 880), (x - 100, 870), 2)
+            pygame.draw.line(screen, White, (x - 40, 880), (x - 40, 870), 2)
+            pygame.draw.line(screen, White, (x - 70, 880), (x - 70, 860), 3) 
+            pygame.draw.line(screen, White, (x - 130, 880), (x - 130, 850), 4)
 
             # marks for upper line
-            pygame.draw.line(screen, White, (x - 220, 100), (x - 220, 110))
-            pygame.draw.line(screen, White, (x - 160, 100), (x - 160, 110))
-            pygame.draw.line(screen, White, (x - 190, 100), (x - 190, 120)) 
-            pygame.draw.line(screen, White, (x - 100, 100), (x - 100, 110))
-            pygame.draw.line(screen, White, (x - 40, 100), (x - 40, 110))
-            pygame.draw.line(screen, White, (x - 70, 100), (x - 70, 120)) 
-            pygame.draw.line(screen, White, (x - 130, 100), (x - 130, 130))
+            pygame.draw.line(screen, White, (x - 220, 100), (x - 220, 110), 2)
+            pygame.draw.line(screen, White, (x - 160, 100), (x - 160, 110), 2)
+            pygame.draw.line(screen, White, (x - 190, 100), (x - 190, 120), 3) 
+            pygame.draw.line(screen, White, (x - 100, 100), (x - 100, 110), 2)
+            pygame.draw.line(screen, White, (x - 40, 100), (x - 40, 110), 2)
+            pygame.draw.line(screen, White, (x - 70, 100), (x - 70, 120), 3) 
+            pygame.draw.line(screen, White, (x - 130, 100), (x - 130, 130), 4)
 
     # numbered marks
     cnt = len(nums) - 2
