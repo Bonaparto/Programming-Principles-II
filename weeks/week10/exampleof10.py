@@ -13,6 +13,7 @@ run = True
 def get_image(path):    
     global image_library
     path = os.path.join(os.getcwd(), 'images', path)
+    print(path)
     image = image_library.get(path)
     if image == None:
         image = pygame.image.load(path)
@@ -37,7 +38,7 @@ class Im:
             self.dy *= -1
 
     def draw(self, screen):
-        screen.blit(get_image('siski.jpg'), (self.x, self.y))
+        screen.blit(get_image('photo.jpg'), (self.x, self.y))
 
 images = [
     Im()
