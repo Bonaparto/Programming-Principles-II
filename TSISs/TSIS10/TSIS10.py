@@ -6,10 +6,13 @@ pygame.init()
 
 Width, Height = 640, 640
 screen = pygame.display.set_mode((Width, Height))
-pygame.display.set_caption('ФОРСАЖ 14124')
+pygame.display.set_caption('MOBA RUN')
 FPS = pygame.time.Clock()
-White = (255, 255, 255)
-Red = (0, 255, 255)
+White = (200, 200, 200)
+Black = (0, 0, 0)
+Red = (255, 0, 0)
+Blue = (0, 0, 255)
+Green = (0, 255, 0)
 Yellow = (255, 0, 255)
 p_library_of_images = {}
 e_library_of_images = {}
@@ -18,6 +21,7 @@ speed = 1
 coinFont = pygame.font.SysFont('chiller', 40)
 endFont = pygame.font.SysFont('century', 100)
 game_over = endFont.render('Game Over', True, Red)
+cont = endFont.render('Play again', True, Blue)
 
 def get_image(name, p):
     if p == 0:
@@ -155,13 +159,14 @@ while True:
             entity.move()
 
         if pygame.sprite.spritecollideany(P1, enemies):
-            # screen.fill(White)
             for entity in all_sprites:
                 entity.kill()
                 screen.fill(White)
+                pygame.draw.rect(screen, Green, 80, 270, 40, 40)
                 end = True
                 while end:
-                    screen.blit(game_over, (70, 240))
+                    screen.blit(game_over, (65, 240))
+                    screen.blit(cont, (80, 260))
                     pygame.display.update()
                     for event in pygame.event.get():
                         if event.type == QUIT:
