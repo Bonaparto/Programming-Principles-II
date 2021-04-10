@@ -18,10 +18,12 @@ p_library_of_images = {}
 e_library_of_images = {}
 pe_library_of_images = {}
 speed = 1
-coinFont = pygame.font.SysFont('chiller', 40)
+cnt = 0
+coinFont = pygame.font.SysFont('chiller', 60)
 endFont = pygame.font.SysFont('century', 100)
 game_over = endFont.render('Game Over', True, Red)
 cont = endFont.render('Play again', True, Blue)
+background = pygame.image.load(os.path.join(os.getcwd(), 'images', 'Backgrounds', str(random.randint(1, 4)) + '.png'))
 
 def get_image(name, p):
     if p == 0:
@@ -48,6 +50,20 @@ def get_image(name, p):
             image = pygame.image.load(path)
             p_library_of_images[path] = image
         return image
+
+def endgame():
+    pygame.mixer.music.load(os.path.join(os.getcwd(), 'end.mp3'))
+    pygame.mixer.music.play(0)
+    for entity in all_sprites:
+        entity.kill()
+    while True:
+        screen.fill(White)
+        screen.blit(game_over, (65, 200))
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+        pygame.display.flip()
 
 class Player(pygame.sprite.Sprite):
     def __init__(self): 
@@ -142,39 +158,24 @@ all_sprites.add(E1)
 all_sprites.add(Pe1)
 
 while True:
-    background = pygame.image.load(os.path.join(os.getcwd(), 'images', 'Backgrounds', str(random.randint(1, 4)) + '.png'))
-    cnt = 0
-    while True:
-        pygame.display.update()
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
-        score = coinFont.render(str(cnt), True, Yellow)
-        screen.blit(background, (0, 0))
-        screen.blit(score, (600, 0))
+    pygame.display.update()
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+    score = coinFont.render(str(cnt), True, Yellow)
+    screen.blit(background, (0, 0))
+    screen.blit(score, (550, 10))
 
-        for entity in all_sprites:
-            screen.blit(entity.image, entity.rect)
-            entity.move()
+    for entity in all_sprites:
+        screen.blit(entity.image, entity.rect)
+        entity.move()
 
-        if pygame.sprite.spritecollideany(P1, enemies):
-            for entity in all_sprites:
-                entity.kill()
-                screen.fill(White)
-                pygame.draw.rect(screen, Green, 80, 270, 40, 40)
-                end = True
-                while end:
-                    screen.blit(game_over, (65, 240))
-                    screen.blit(cont, (80, 260))
-                    pygame.display.update()
-                    for event in pygame.event.get():
-                        if event.type == QUIT:
-                            pygame.quit()
-                            sys.exit()
-        
-        if pygame.sprite.spritecollideany(P1, pets):
-            cnt += 1
-            Pe1.rect.top = Height
+    if pygame.sprite.spritecollideany(P1, enemies):
+        endgame()
+                    
+    if pygame.sprite.spritecollideany(P1, pets):
+        cnt += 1
+        Pe1.rect.top = Height
 
-        FPS.tick(60)
+    FPS.tick(60)
