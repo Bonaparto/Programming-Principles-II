@@ -6,7 +6,7 @@ pygame.init()
 
 Width, Height = 640, 640
 screen = pygame.display.set_mode((Width, Height))
-pygame.display.set_caption('MOBA RUN')
+pygame.display.set_caption('Munecraft:)')
 FPS = pygame.time.Clock()
 White = (200, 200, 200)
 Black = (0, 0, 0)
@@ -20,9 +20,7 @@ pe_library_of_images = {}
 speed = 1
 cnt = 0
 coinFont = pygame.font.SysFont('chiller', 60)
-endFont = pygame.font.SysFont('century', 100)
-game_over = endFont.render('Game Over', True, Red)
-cont = endFont.render('Play again', True, Blue)
+game_over = pygame.image.load(os.path.join(os.getcwd(), 'images', 'end.jpg'))
 background = pygame.image.load(os.path.join(os.getcwd(), 'images', 'Backgrounds', str(random.randint(1, 4)) + '.png'))
 
 def get_image(name, p):
@@ -52,13 +50,12 @@ def get_image(name, p):
         return image
 
 def endgame():
-    pygame.mixer.music.load(os.path.join(os.getcwd(), 'end.mp3'))
+    pygame.mixer.music.load(os.path.join(os.getcwd(), 'sfx', 'end.mp3'))
     pygame.mixer.music.play(0)
     for entity in all_sprites:
         entity.kill()
     while True:
-        screen.fill(White)
-        screen.blit(game_over, (65, 200))
+        screen.blit(game_over, (0, 0))
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
@@ -156,6 +153,10 @@ all_sprites = pygame.sprite.Group()
 all_sprites.add(P1)
 all_sprites.add(E1)
 all_sprites.add(Pe1)
+pygame.mixer.music.load(os.path.join(os.getcwd(), 'sfx', 'coin.mp3'))
+pygame.mixer.music.load(os.path.join(os.getcwd(), 'sfx', 'game.mp3'))
+pygame.mixer.Channel(0).play(pygame.mixer.Sound(os.path.join(os.getcwd(), 'sfx', 'game.mp3')))
+pygame.mixer.music.play(-1)
 
 while True:
     pygame.display.update()
@@ -172,9 +173,11 @@ while True:
         entity.move()
 
     if pygame.sprite.spritecollideany(P1, enemies):
+        pygame.mixer.Channel(0).stop()
         endgame()
                     
     if pygame.sprite.spritecollideany(P1, pets):
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound(os.path.join(os.getcwd(), 'sfx', 'coin.mp3')))
         cnt += 1
         Pe1.rect.top = Height
 
