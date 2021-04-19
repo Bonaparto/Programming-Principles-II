@@ -13,7 +13,7 @@ Win_Height = 600
 Win_Width = 600
 
 screen = pygame.display.set_mode((Win_Width, Win_Height))
-pygame.display.set_caption('СНЭЙК ЮТУБЕР')
+pygame.display.set_caption('КВАДРАТНЫЙ СНЭЙК')
 fps = pygame.time.Clock()
 
 menu_font = pygame.font.SysFont('arial', 100)
