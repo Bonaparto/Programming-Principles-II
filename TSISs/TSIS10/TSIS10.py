@@ -17,7 +17,6 @@ Yellow = (255, 0, 255)
 p_library_of_images = {}
 e_library_of_images = {}
 pe_library_of_images = {}
-speed = 1
 cnt = 0
 coinFont = pygame.font.SysFont('chiller', 60)
 game_over = pygame.image.load(os.path.join(os.getcwd(), 'images', 'end.jpg'))
@@ -102,7 +101,7 @@ class Enemy(pygame.sprite.Sprite):
         super().__init__()
         self.E = random.randint(1, 9)
         self.image = get_image(f'E ({self.E}).png', 0)
-        self.speed = random.randint(5 + speed // 8, 11 + speed // 8)
+        self.speed = random.randint(5 + cnt // 8, 11 + cnt // 8)
         self.surf = pygame.Surface((65, 108))
         self.rect = self.surf.get_rect(center = (random.randint(90, 550), random.randint(90, 100)))
         self.cnt = 1
@@ -112,7 +111,7 @@ class Enemy(pygame.sprite.Sprite):
         if self.rect.top > Height:
             self.rect.top = 0
             self.rect.center = (random.randint(65, 575), random.randint(50, 60))
-            self.speed = random.randint(5 + self.cnt // 4, 11 + self.cnt // 4)
+            self.speed = random.randint(4 + cnt // 4, 9 + cnt // 4)
             self.E = random.randint(1, 9)
             self.image = get_image(f'E ({self.E}).png', 0)
             self.cnt += 1
@@ -135,8 +134,6 @@ class Pet(pygame.sprite.Sprite):
             self.rect = self.surf.get_rect(center = (random.randint(40, 600), 40))
             self.rect.top = 0
             self.image = get_image(str(self.pe) + '.png', 12)
-            global speed
-            speed += 1
         
     def draw(self):
         screen.blit(self.image, self.rect)
