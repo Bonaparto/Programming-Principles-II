@@ -24,6 +24,7 @@ Pale_Pink = (255, 208, 160)
 font = pygame.font.SysFont('verdana', 45)
 eraser = font.render('Eraser', True, Black)
 size_text = font.render('Size', True, Black)
+save_text = font.render('Press ESC to save image', True, Black)
 screen.fill(White)
 
 colors = [Black, Pale_Pink, Brown, Orange, Yellow, Green, Blue, Purple, Pink, Red, Yellow_Green, Gray]
@@ -36,7 +37,7 @@ choosen_figure = True
 run = True
 
 def save_image():
-    subsurface = screen.subsurface((0, 0, Win_Width - 300, Win_Height))
+    subsurface = screen.subsurface((0, 100, Win_Width - 330, Win_Height - 100))
     pygame.image.save(subsurface, 'image.png')
 
 def options_check(event, coos):
@@ -78,7 +79,6 @@ def figure_check(event, coos):
         choosen_color_circle = choosen_color
         choosen_color_rect = Black
 
-
 while run:  
     pressed = pygame.mouse.get_pressed()
     left_button = pressed[0]
@@ -91,7 +91,7 @@ while run:
                     save_image()
                     run = False
         coos = pygame.mouse.get_pos()
-        if left_button and coos[0] < 800:
+        if left_button and coos[0] < 800 and coos[1] > 130:
             if choosen_figure:
                 pygame.draw.rect(screen, choosen_color, (coos[0] - size // 2, coos[1] - size // 2, size, size))
             if not choosen_figure:
@@ -104,15 +104,17 @@ while run:
             elif 850 <= coos[0] <= 1080 and 130 >= coos[1] >= 30:
                 figure_check(event, coos)
 
+    screen.blit(save_text, (50, 0))
+    pygame.draw.line(screen, Black, (0, 80), (800, 80), 30)
     pygame.draw.rect(screen, White, (800, 0, 400, 1000))
-    screen.blit(size_text, (920, 220))
-    screen.blit(eraser, (895, 900))
     pygame.draw.rect(screen, choosen_color if not choosen_color == White else Black, (880, 900, 170, 60), 4)
     pygame.draw.line(screen, Black, (800, 0), (800, 1000), 30)
     pygame.draw.rect(screen, choosen_color_rect, (850, 30, size, size))
     pygame.draw.circle(screen, choosen_color_circle, (1030, 80), size // 2)
     pygame.draw.aalines(screen, Black, True, ((860, 200), (1060, 180), (1060, 220)))
     pygame.draw.lines(screen, choosen_color if not choosen_color == White else Black, True, ((860, 200), (860 + size * 2 , 200 + int(0.2 * size)), (860 + size * 2 , 200 - int(0.2 * size))), 5)
+    screen.blit(size_text, (920, 220))
+    screen.blit(eraser, (895, 900))
 
     X, Y = 880, 200
     for i in range(12):
