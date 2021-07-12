@@ -1,6 +1,3 @@
-import sys
-sys.setrecursionlimit(10**7)
-
 def count(s):
     l[s] += 1
     if(s in r):

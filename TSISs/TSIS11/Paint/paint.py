@@ -1,4 +1,4 @@
-import pygame, os, sys
+import pygame, sys
 
 pygame.init()
 
@@ -33,6 +33,7 @@ choosen_color_circle = Black
 choosen_color_rect = Black
 size = 100
 choosen_figure = True
+fps = pygame.time.Clock()
 
 run = True
 
@@ -124,4 +125,5 @@ while run:
             X += 120
             Y = 200
 
+    fps.tick(500)
     pygame.display.flip()
